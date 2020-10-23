@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{6837C71A-8997-4062-ADFF-E2D1AF63D2FF}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="TestDemo.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="TesAppDemo.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="TestDemo">
+        <MSBuild Projects="TestDemo.dproj"/>
+    </Target>
+    <Target Name="TestDemo:Clean">
+        <MSBuild Projects="TestDemo.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TestDemo:Make">
+        <MSBuild Projects="TestDemo.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="TesAppDemo">
+        <MSBuild Projects="TesAppDemo.dproj"/>
+    </Target>
+    <Target Name="TesAppDemo:Clean">
+        <MSBuild Projects="TesAppDemo.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TesAppDemo:Make">
+        <MSBuild Projects="TesAppDemo.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="TestDemo;TesAppDemo"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="TestDemo:Clean;TesAppDemo:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="TestDemo:Make;TesAppDemo:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
